@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using static SpartaDungeon.Equipment;
 
 namespace SpartaDungeon
@@ -17,6 +18,9 @@ namespace SpartaDungeon
         int upAtk;
         int upDef;
 
+        public int nowWeaponIdx;
+        public int nowArmorIdx;
+
         public double itemBit { get; set; }
 
         //현재 무기
@@ -32,6 +36,8 @@ namespace SpartaDungeon
             this.def = def;
             this.hp = hp;
             this.gold = gold;
+            nowWeaponIdx = int.MaxValue;
+            nowArmorIdx = int.MaxValue;
         }
 
         public void ShowStat()
@@ -73,6 +79,7 @@ namespace SpartaDungeon
                     upAtk = e.GetEquipmnentStat();
                     nowWeapon = e;
                     e.isEquip = true;
+                    nowWeaponIdx = idx;
                 }
                 else
                 {
@@ -86,6 +93,7 @@ namespace SpartaDungeon
                     upDef += e.GetEquipmnentStat();
                     nowArmor = e;
                     e.isEquip = true;
+                    nowArmorIdx = idx;
                 }
                 else
                 {
@@ -100,12 +108,14 @@ namespace SpartaDungeon
             if (e.getEquipmentType() == EquipmentType.Weapon)
             {
                 upAtk -= e.GetEquipmnentStat();
-                nowWeapon = null;                
+                nowWeapon = null;
+                nowWeaponIdx = int.MaxValue;
             }
             else
             {
                 upDef -= e.GetEquipmnentStat();
                 nowArmor = null;
+                nowArmorIdx = int.MaxValue;
             }
         }
 
@@ -130,6 +140,7 @@ namespace SpartaDungeon
                 {
                     upDef = e.GetEquipmnentStat();
                     nowArmor = e;
+                    nowArmorIdx = int.MaxValue;
                 }
             }
             e.isEquip = true;
@@ -217,16 +228,20 @@ namespace SpartaDungeon
             this.level = int.Parse(data[0]);
             this.name = data[1];
             this.job = data[2];
-            this.atk = int.Parse(data[3]);
+            this.atk = float.Parse(data[3]);
             this.def = int.Parse(data[4]);
             this.hp = int.Parse(data[5]);
             this.gold = int.Parse(data[6]);
             this.itemBit = int.Parse(data[7]);
+            this.nowWeaponIdx = int.Parse(data[8]);
+            this.nowArmorIdx = int.Parse(data[9]);
+            Console.ReadKey();
         }
 
         public void SetItemInfo(Equipment e)
         {
             inventory.Clear();
+            
             int count = 0;
             foreach(Equipment item in e.itemData)
             {
@@ -234,10 +249,23 @@ namespace SpartaDungeon
                 {
                     item.isSelled = true;
                     inventory.Add(item);
-                    Console.WriteLine(item);
                 }
             }
-            Console.ReadKey();
+            if(nowWeaponIdx != int.MaxValue)
+                inventory[nowWeaponIdx].isEquip = true;
+            if (nowArmorIdx != int.MaxValue)
+                inventory[nowArmorIdx].isEquip = true;
+
+            int cnt = 0;
+
+            foreach (Equipment item in inventory)
+            {
+                if (cnt != nowWeaponIdx && cnt != nowArmorIdx)
+                {
+                    item.isEquip = false;
+                }
+                cnt++;
+            }
         }
 
         // 몇 번째 bit가 On 인지 확인하기.

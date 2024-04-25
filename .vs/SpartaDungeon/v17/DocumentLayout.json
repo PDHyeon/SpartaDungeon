@@ -1,21 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\",
+  "WorkspaceRootPath": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\visual studio\\spartadungeon\\spartadungeon\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\github\\spartadungeon\\spartadungeon\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\visual studio\\spartadungeon\\spartadungeon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\visual studio\\spartadungeon\\spartadungeon\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\github\\spartadungeon\\spartadungeon\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\visual studio\\spartadungeon\\spartadungeon\\dungeon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\github\\spartadungeon\\spartadungeon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\github\\spartadungeon\\spartadungeon\\playerdata.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\playerdata.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|c:\\users\\park\\documents\\github\\spartadungeon\\spartadungeon\\dungeon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D5D481C-58A0-4C8E-A310-5F3940D69FF6}|SpartaDungeon\\SpartaDungeon.csproj|solutionrelative:spartadungeon\\dungeon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,30 +30,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "PlayerData.txt",
+              "DocumentMoniker": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\PlayerData.txt",
+              "RelativeDocumentMoniker": "SpartaDungeon\\PlayerData.txt",
+              "ToolTip": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\PlayerData.txt",
+              "RelativeToolTip": "SpartaDungeon\\PlayerData.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-04-25T08:29:02.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Dungeon.cs",
-              "DocumentMoniker": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Dungeon.cs",
+              "DocumentMoniker": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Dungeon.cs",
               "RelativeDocumentMoniker": "SpartaDungeon\\Dungeon.cs",
-              "ToolTip": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Dungeon.cs",
+              "ToolTip": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Dungeon.cs",
               "RelativeToolTip": "SpartaDungeon\\Dungeon.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAiwGEAAAAZAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAAAG4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-24T11:45:34.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Equipment.cs",
-              "DocumentMoniker": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Equipment.cs",
+              "DocumentMoniker": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Equipment.cs",
               "RelativeDocumentMoniker": "SpartaDungeon\\Equipment.cs",
-              "ToolTip": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Equipment.cs",
+              "ToolTip": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Equipment.cs",
               "RelativeToolTip": "SpartaDungeon\\Equipment.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBkAAAAnAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAswBkAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-22T11:18:10.193Z",
               "EditorCaption": ""
@@ -58,24 +75,24 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Player.cs",
               "RelativeDocumentMoniker": "SpartaDungeon\\Player.cs",
-              "ToolTip": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Player.cs",
+              "ToolTip": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Player.cs",
               "RelativeToolTip": "SpartaDungeon\\Player.cs",
-              "ViewState": "AQIAANoAAAAAAAAAAAAmwOQAAAAeAAAA",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAqwGoAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-22T06:50:54.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Program.cs",
               "RelativeDocumentMoniker": "SpartaDungeon\\Program.cs",
-              "ToolTip": "C:\\Users\\Park\\Documents\\Visual Studio\\SpartaDungeon\\SpartaDungeon\\Program.cs",
+              "ToolTip": "C:\\Users\\Park\\Documents\\GitHub\\SpartaDungeon\\SpartaDungeon\\Program.cs",
               "RelativeToolTip": "SpartaDungeon\\Program.cs",
-              "ViewState": "AQIAAIQBAAAAAAAAAAAswJUBAAArAAAA",
+              "ViewState": "AQIAAI4BAAAAAAAAAAAAwJsBAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-22T06:30:29.471Z",
               "EditorCaption": ""

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.IO;
 
 namespace SpartaDungeon
 {
@@ -221,7 +222,7 @@ namespace SpartaDungeon
                     //장착 시에는 타 장비를 해제해야 함.
                     else
                     {
-                        user.EquipItem(e, equipmentInfo.itemData.Count);
+                        user.EquipItem(e, choice -1);
                     }
                     Console.Clear();
                     ManageItem(user);
@@ -354,6 +355,10 @@ namespace SpartaDungeon
                     Console.Clear();
                 }
             }
+            else
+            {
+                Console.Clear();
+            }
         }
 
         static void Rest(Player user)
@@ -390,9 +395,8 @@ namespace SpartaDungeon
         static void SaveFile(Player user)
         {
             Console.WriteLine("파일을 저장합니다.");
-            string filePath = @"C:\Users\Park\Documents\Visual Studio\SpartaDungeon\SpartaDungeon\PlayerData.txt";
+            string filePath = @"C:\Users\Park\Documents\GitHub\SpartaDungeon\SpartaDungeon\PlayerData.txt";
 
-            // 파일이 존재하지 않으면
             // 저장.
             using (StreamWriter sw = File.CreateText(filePath))
             {
@@ -403,14 +407,16 @@ namespace SpartaDungeon
                 sw.WriteLine(user.def);
                 sw.WriteLine(user.hp);
                 sw.WriteLine(user.gold);
-                sw.WriteLine(user.itemBit);
+                sw.WriteLine(user.itemBit);              
+                sw.WriteLine(user.nowWeaponIdx);
+                sw.WriteLine(user.nowArmorIdx);
             }
         }
 
         static void LoadFile(Player user)
         {
 
-            string filePath = @"C:\Users\Park\Documents\Visual Studio\SpartaDungeon\SpartaDungeon\PlayerData.txt";
+            string filePath = @"C:\Users\Park\Documents\GitHub\SpartaDungeon\SpartaDungeon\PlayerData.txt";
             List<string> lines = new List<string>();
 
             if (File.Exists(filePath))
