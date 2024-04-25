@@ -1,12 +1,13 @@
-﻿using static SpartaDungeon.Equipment;
+﻿using System.Diagnostics.CodeAnalysis;
+using static SpartaDungeon.Equipment;
 
 namespace SpartaDungeon
 {
     public class Player
     {
         public int level { get; set; }
-        string name;
-        string job;
+        public string name { get; set; }
+        public string job { get; set; }
         public float atk { get; set; } 
         public int def { get; set; }
         public int hp { get; set; }
@@ -15,6 +16,8 @@ namespace SpartaDungeon
 
         int upAtk;
         int upDef;
+
+        public double itemBit { get; set; }
 
         //현재 무기
         Equipment nowWeapon;
@@ -61,7 +64,7 @@ namespace SpartaDungeon
             //inventory.Add(e.itemData[1]);
         }
 
-        public void EquipItem(Equipment e)
+        public void EquipItem(Equipment e, int idx)
         {
             if (e.getEquipmentType() == EquipmentType.Weapon)
             {
@@ -97,7 +100,7 @@ namespace SpartaDungeon
             if (e.getEquipmentType() == EquipmentType.Weapon)
             {
                 upAtk -= e.GetEquipmnentStat();
-                nowWeapon = null;
+                nowWeapon = null;                
             }
             else
             {
@@ -207,6 +210,49 @@ namespace SpartaDungeon
         public List<Equipment> GetItemList()
         {
             return inventory;
+        }
+
+        public void SetPlayerStat(List<string> data)
+        {
+            this.level = int.Parse(data[0]);
+            this.name = data[1];
+            this.job = data[2];
+            this.atk = int.Parse(data[3]);
+            this.def = int.Parse(data[4]);
+            this.hp = int.Parse(data[5]);
+            this.gold = int.Parse(data[6]);
+            this.itemBit = int.Parse(data[7]);
+        }
+
+        public void SetItemInfo(Equipment e)
+        {
+            inventory.Clear();
+            int count = 0;
+            foreach(Equipment item in e.itemData)
+            {
+                if(Check_Bit(itemBit, count++))
+                {
+                    item.isSelled = true;
+                    inventory.Add(item);
+                    Console.WriteLine(item);
+                }
+            }
+            Console.ReadKey();
+        }
+
+        // 몇 번째 bit가 On 인지 확인하기.
+        public bool Check_Bit(double _data, int loc)
+        {
+            int val = (0x1 << loc);
+            return ((int)_data & val) == val;
+        }
+
+        // _loc 위치의 bit를 On 시켜주기.
+        // 0000 0000 => 1, 2번 구매시 (0000 0001) (0000 0011) 됨.
+        public int Set_BitOn(int _loc)
+        {
+            itemBit = (int)itemBit | (byte)(0x01 << _loc);
+            return (int)itemBit;
         }
     }
 }

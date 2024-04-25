@@ -27,7 +27,7 @@ namespace SpartaDungeon
 
         public Equipment()
         {
-
+            AddItemData();
         }
         public Equipment(EquipmentType _type, int _stat, string _name, string _explain, int _cost)
         {
@@ -99,7 +99,7 @@ namespace SpartaDungeon
             }
         }
 
-        public int GetEquipmnentStat ()
+        public int GetEquipmnentStat()
         {
             return stat;
         }

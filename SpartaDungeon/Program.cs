@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection.Metadata;
+﻿using System.Text;
 
 namespace SpartaDungeon
 {
@@ -12,7 +11,7 @@ namespace SpartaDungeon
         static bool isPlaying = true;
 
         static void Main(string[] args)
-        {          
+        {
             while (isPlaying)
             {
                 ChoiceMenu(player1, ShowIntro());
@@ -30,7 +29,10 @@ namespace SpartaDungeon
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
             Console.WriteLine("4. 던전입장");
-            Console.WriteLine("5. 휴식하기\n");
+            Console.WriteLine("5. 휴식하기");
+            Console.WriteLine("6. 파일 저장하기");
+            Console.WriteLine("7. 저장된 파일 불러오기");
+            Console.WriteLine("8. 게임 종료하기\n");
             choice = MakeChoice();
 
             Console.Clear();
@@ -62,13 +64,23 @@ namespace SpartaDungeon
                     EnterDungeon();
                     break;
                 case 5:
-                    Rest(user); 
+                    Rest(user);
                     break;
                 //잘못된 입력이 들어온 경우 switch 문 종료
+                case 6:
+                    SaveFile(user);
+                    break;
+                case 7:
+                    LoadFile(user);
+                    break;
+                case 8:
+                    Console.WriteLine("게임을 종료합니다.");
+                    isPlaying = false;
+                    break;
                 case int.MaxValue:
                     break;
 
-                    //default 는 1~5 외의 숫자가 들어올 때 실행된다.
+                //default 는 1~5 외의 숫자가 들어올 때 실행된다.
                 default:
                     // 메뉴로 다시 돌아가기.
                     Console.WriteLine("잘못된 값을 입력했습니다.");
@@ -119,7 +131,7 @@ namespace SpartaDungeon
 
             foreach (Equipment e in user.GetItemList())
             {
-                if(e.isEquip)
+                if (e.isEquip)
                 {
                     Console.Write("[E] ");
                 }
@@ -149,12 +161,12 @@ namespace SpartaDungeon
                     choice = MakeChoice();
                 }
                 // 결국 0이라면 메뉴로
-                if(choice == 0)
+                if (choice == 0)
                 {
                     Console.Clear();
                 }
                 // 장착 관리 메뉴로
-                if(choice == 1)
+                if (choice == 1)
                 {
                     ManageItem(user);
                 }
@@ -186,7 +198,7 @@ namespace SpartaDungeon
                 // 메뉴 개수에 따라 선택지를 조정해야한다.
                 // (ex. 장비가 10개면 목록이 10개) - 카운트 갯수 만큼 선택지를 활성화 시키기.
                 int choice = MakeChoice();
-                while(count < choice)
+                while (count < choice)
                 {
                     Console.WriteLine("잘못된 입력입니다.");
                     choice = MakeChoice();
@@ -209,12 +221,13 @@ namespace SpartaDungeon
                     //장착 시에는 타 장비를 해제해야 함.
                     else
                     {
-                        user.EquipItem(e);
-                    }                  
+                        user.EquipItem(e, equipmentInfo.itemData.Count);
+                    }
                     Console.Clear();
                     ManageItem(user);
                 }
             }
+            // 인벤토리에 아이템이 없다면
             else
             {
                 Console.WriteLine("관리할 장비가 없습니다. 메뉴로 돌아갑니다.");
@@ -235,10 +248,10 @@ namespace SpartaDungeon
             Console.WriteLine("0. 나가기\n");
             int choice = MakeChoice();
 
-            
-            while(choice > 2)
+
+            while (choice > 2)
             {
-                if(choice < int.MaxValue)
+                if (choice < int.MaxValue)
                     Console.WriteLine(("범위를 벗어난 값을 입력했습니다."));
                 choice = MakeChoice();
             }
@@ -250,9 +263,9 @@ namespace SpartaDungeon
                     Console.Clear();
                     break;
                 // 아이템 구매 메뉴
-                case 1:              
+                case 1:
                     Console.Clear();
-                    PrintStoreInfo("- 아이템 구매", user);                   
+                    PrintStoreInfo("- 아이템 구매", user);
                     equipmentInfo.ShowEntireItem(true);
                     Console.WriteLine("\n0. 나가기");
                     int _choice = MakeChoice();
@@ -262,7 +275,7 @@ namespace SpartaDungeon
                         _choice = MakeChoice();
                     }
 
-                    if(_choice == 0)
+                    if (_choice == 0)
                     {
                         Console.Clear();
                         //메뉴로
@@ -270,10 +283,11 @@ namespace SpartaDungeon
                     else
                     {
                         user.BuyItem(equipmentInfo.itemData[_choice - 1]);
+                        user.Set_BitOn(_choice - 1);
                         Console.ReadKey(true);
                         Console.Clear();
                         ShowStore(user);
-                    }                        
+                    }
                     //구매
                     break;
                 // 아이템 판매 메뉴
@@ -305,7 +319,7 @@ namespace SpartaDungeon
 
         static void PrintStoreInfo(string str, Player user)
         {
-            Console.WriteLine("상점 {0}\r\n필요한 아이템을 얻을 수 있는 상점입니다.\n",str);
+            Console.WriteLine("상점 {0}\r\n필요한 아이템을 얻을 수 있는 상점입니다.\n", str);
             Console.WriteLine(String.Format($"보유 골드 : {user.gold}\n"));
             Console.WriteLine("[아이템 목록]\n");
         }
@@ -319,7 +333,7 @@ namespace SpartaDungeon
             Console.WriteLine("3. 어려운 던전     | 방어력 17 이상 권장");
             Console.WriteLine("0. 나가기\n");
             int choice = MakeChoice();
-            while (choice < 0 || choice > 3) 
+            while (choice < 0 || choice > 3)
             {
                 Console.WriteLine("잘못된 입력입니다.");
                 choice = MakeChoice();
@@ -345,16 +359,16 @@ namespace SpartaDungeon
         static void Rest(Player user)
         {
             Console.WriteLine("휴식하기\n");
-            Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다. (보유 골드: {0} G)\n",user.gold);
+            Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다. (보유 골드: {0} G)\n", user.gold);
             Console.WriteLine("1. 휴식하기");
             Console.WriteLine("0. 나가기\n");
             int choice = MakeChoice();
-            while(choice != 0 && choice != 1)
+            while (choice != 0 && choice != 1)
             {
                 choice = MakeChoice();
             }
 
-            if(choice == 1)
+            if (choice == 1)
             {
                 if (user.hp < 100)
                 {
@@ -367,10 +381,56 @@ namespace SpartaDungeon
                     Console.WriteLine("이미 체력이 넘칩니다!");
                 }
             }
-            
+
             Console.WriteLine("메뉴로 돌아갑니다.");
             Console.ReadKey(true);
             Console.Clear();
+        }
+
+        static void SaveFile(Player user)
+        {
+            Console.WriteLine("파일을 저장합니다.");
+            string filePath = @"C:\Users\Park\Documents\Visual Studio\SpartaDungeon\SpartaDungeon\PlayerData.txt";
+
+            // 파일이 존재하지 않으면
+            // 저장.
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.WriteLine(user.level);
+                sw.WriteLine(user.name);
+                sw.WriteLine(user.job);
+                sw.WriteLine(user.atk);
+                sw.WriteLine(user.def);
+                sw.WriteLine(user.hp);
+                sw.WriteLine(user.gold);
+                sw.WriteLine(user.itemBit);
+            }
+        }
+
+        static void LoadFile(Player user)
+        {
+
+            string filePath = @"C:\Users\Park\Documents\Visual Studio\SpartaDungeon\SpartaDungeon\PlayerData.txt";
+            List<string> lines = new List<string>();
+
+            if (File.Exists(filePath))
+            {
+                //파일을 사용한 후 닫아주기위해 using으로 묶어준다.
+                using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+                {
+                    //파일의 마지막까지 읽어 들였는지
+                    while (!reader.EndOfStream)
+                    {
+                        //ReadLine 메서드로 한 행을 읽어 들여 line 변수에 대입 List에 추가
+                        string line = reader.ReadLine();
+                        lines.Add(line);
+                    }
+                }
+                int count = 0;
+
+                user.SetPlayerStat(lines);
+                user.SetItemInfo(equipmentInfo);
+            }
         }
     }
 }
