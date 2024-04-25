@@ -1,15 +1,19 @@
-﻿namespace SpartaDungeon
+﻿using System;
+using System.Reflection.Metadata;
+
+namespace SpartaDungeon
 {
     internal class Program
     {
         // 데이터 가져오기 기능 수행을 위해 만듦
         static Equipment equipmentInfo = new Equipment();
+        static Dungeon dungeon = new Dungeon();
+        static Player player1 = new Player(1, "Chad", "전사", 10, 5, 100, 1500);
+        static bool isPlaying = true;
 
         static void Main(string[] args)
-        {
-            Player player1 = new Player(1, "Chad", "전사", 10, 5, 100, 1500);
-
-            while (true)
+        {          
+            while (isPlaying)
             {
                 ChoiceMenu(player1, ShowIntro());
             }
@@ -25,7 +29,8 @@
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
-            Console.WriteLine("4. 던전입장\n");
+            Console.WriteLine("4. 던전입장");
+            Console.WriteLine("5. 휴식하기\n");
             choice = MakeChoice();
 
             Console.Clear();
@@ -54,10 +59,10 @@
                     break;
 
                 case 4:
-                    Console.WriteLine("던전");
+                    EnterDungeon();
                     break;
                 case 5:
-                    Console.WriteLine("휴식");
+                    Rest(user); 
                     break;
                 //잘못된 입력이 들어온 경우 switch 문 종료
                 case int.MaxValue:
@@ -303,6 +308,69 @@
             Console.WriteLine("상점 {0}\r\n필요한 아이템을 얻을 수 있는 상점입니다.\n",str);
             Console.WriteLine(String.Format($"보유 골드 : {user.gold}\n"));
             Console.WriteLine("[아이템 목록]\n");
+        }
+
+        static void EnterDungeon()
+        {
+            Console.WriteLine("던전입장");
+            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
+            Console.WriteLine("1. 쉬운 던전     | 방어력 5 이상 권장");
+            Console.WriteLine("2. 일반 던전     | 방어력 11 이상 권장");
+            Console.WriteLine("3. 어려운 던전     | 방어력 17 이상 권장");
+            Console.WriteLine("0. 나가기\n");
+            int choice = MakeChoice();
+            while (choice < 0 || choice > 3) 
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                choice = MakeChoice();
+            }
+            if (choice != 0)
+            {
+                dungeon.SetDungeon((Dungeon.Level)choice);
+                isPlaying = dungeon.ChallengeDungeon(player1);
+                // 나가기 밖에 없으므로.
+                int choice_2 = 1;
+
+                while (choice_2 != 0 && isPlaying)
+                {
+                    choice_2 = MakeChoice();
+                }
+                if (isPlaying)
+                {
+                    Console.Clear();
+                }
+            }
+        }
+
+        static void Rest(Player user)
+        {
+            Console.WriteLine("휴식하기\n");
+            Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다. (보유 골드: {0} G)\n",user.gold);
+            Console.WriteLine("1. 휴식하기");
+            Console.WriteLine("0. 나가기\n");
+            int choice = MakeChoice();
+            while(choice != 0 && choice != 1)
+            {
+                choice = MakeChoice();
+            }
+
+            if(choice == 1)
+            {
+                if (user.hp < 100)
+                {
+                    user.gold -= 500;
+                    user.hp = 100;
+                    Console.WriteLine("체력이 회복되었습니다.");
+                }
+                else
+                {
+                    Console.WriteLine("이미 체력이 넘칩니다!");
+                }
+            }
+            
+            Console.WriteLine("메뉴로 돌아갑니다.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
     }
 }

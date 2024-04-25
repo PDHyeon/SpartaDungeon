@@ -4,12 +4,12 @@ namespace SpartaDungeon
 {
     public class Player
     {
-        int level;
+        public int level { get; set; }
         string name;
         string job;
-        int atk;
-        int def;
-        int hp;
+        public float atk { get; set; } 
+        public int def { get; set; }
+        public int hp { get; set; }
         public int gold { get; set; }
         List<Equipment> inventory = new List<Equipment>();
 
@@ -196,6 +196,13 @@ namespace SpartaDungeon
                 inventory[count++].ShowEquipmentInfo(sellstr);
             }
             Console.WriteLine();
+        }
+
+        public void LevelUp()
+        {
+            level += 1;
+            atk += 0.5f;
+            def += 1;
         }
         public List<Equipment> GetItemList()
         {
